@@ -3,15 +3,14 @@ import {Input} from "./Input";
 
 describe("Input", () => {
   it("renders", () => {
-    const conChange = jest.fn();
+    const onChange = jest.fn();
 
     const {getByRole} = render(
       <Input
         name="test"
         value="test"
         placeholder="test"
-        onChange={conChange}
-        type="text"
+        onChange={onChange}
       />,
     );
 
@@ -20,20 +19,19 @@ describe("Input", () => {
   });
 
   it("calls onChange", () => {
-    const conChange = jest.fn();
+    const onChange = jest.fn();
 
     const {getByRole} = render(
       <Input
         name="test"
         value="test"
         placeholder="test"
-        onChange={conChange}
-        type="text"
+        onChange={onChange}
       />,
     );
 
     const input = getByRole("textbox");
     fireEvent.change(input, {target: {value: "test1"}});
-    expect(conChange).toHaveBeenCalledTimes(1);
+    expect(onChange).toHaveBeenCalledTimes(1);
   });
 });
