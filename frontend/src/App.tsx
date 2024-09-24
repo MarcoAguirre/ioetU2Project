@@ -2,16 +2,29 @@ import { useState } from "react";
 import "./App.css";
 import { Button, Input, RateStar } from "./components";
 import { Box, Stack } from "@mui/material";
+import { feedbackService } from "./services";
 
 function App() {
   const [feedback, setFeedback] = useState<string>("");
+  const [response, setResponse] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string>("");
 
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFeedback(event.target.value);
   };
 
-  const sendFeedback = () => {
-    console.log(feedback);
+  const sendFeedback = async (): Promise<void> => {
+    setLoading(true);
+    setError("");
+    try {
+      const chatResponse = await feedbackService(feedback);
+      setResponse(chatResponse);
+    } catch (err) {
+      setError("There was an error trying to connect with the endpoint");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
