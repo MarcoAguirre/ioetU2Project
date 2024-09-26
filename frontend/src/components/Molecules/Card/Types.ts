@@ -1,4 +1,4 @@
 export interface ICardProps {
   cardTitle?: string;
-  cardContent?: string;
+  cardContent?: string | React.ReactNode;
 }
