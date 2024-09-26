@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import ReactMarkdown from 'react-markdown';
+
 import { Button, Input, RateStar, FeedbackCard } from "../..";
 import { Box, Stack } from "@mui/material";
 import { feedbackService } from "../../../services";
@@ -63,7 +65,7 @@ export const PerformanceCopy = () => {
         </Box>
       </Box>
       <Box>
-        <FeedbackCard cardTitle="Your Feedback" cardContent={response} />
+        <FeedbackCard cardTitle="Your Feedback" cardContent={<ReactMarkdown>{response}</ReactMarkdown>} />
       </Box>
     </Box>
   );
